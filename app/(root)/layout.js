@@ -1,10 +1,11 @@
 'use client'
+import Nav from "@/components/Navbar/Nav";
 import { useSession, signIn, signOut } from "next-auth/react";
 
 
-export default function Home() {
+export default function Pagelayout ({children}) {
   const { data: session } = useSession();
-  console.log(session);
+  // console.log(session);
   
   if (!session) {
     return (
@@ -15,7 +16,9 @@ export default function Home() {
     </div>)
   }
   return (
-    <div onClick={() => signOut()}>logged in {session?.user.email}</div>
-    
+    <div className="bg-blue-900 min-h-screen flex">
+      <Nav/>
+      <div className="bg-white flex-grow mt-2 mb-2 mr-1 rounded-lg p-4">{children}</div>
+    </div>
   );
 }
