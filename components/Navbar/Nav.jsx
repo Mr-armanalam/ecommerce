@@ -46,7 +46,7 @@ const Nav = () => {
           Dashboard
         </Link>
         
-        <Link href={"/products"} className={pathname === '/products' ? activeLink : inactiveLink}>
+        <Link href={"/products"} className={(pathname === '/products' || pathname === '/products/new') ? activeLink : inactiveLink}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
