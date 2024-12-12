@@ -27,3 +27,15 @@ table.basic thead tr td {
 table.basic tr td{
   @apply border p-1 border-blue-200;
 }
+table.basic a{
+  @apply bg-blue-900 text-white text-sm py-1 px-2 inline-flex rounded-md;
+}
+.btn-red, .btn-default{
+  @apply px-4 py-1 rounded-md ;
+}
+.btn-red{
+  @apply bg-red-800 text-white;
+}
+.btn-default{
+  @apply bg-gray-500 text-white;
+}
