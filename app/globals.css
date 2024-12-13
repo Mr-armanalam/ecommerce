@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+img{
+  max-width: 100%;
+}
 input, textarea{
   @apply border-2 outline-none border-gray-300 rounded-md px-1 w-full;
   @apply mb-2;
