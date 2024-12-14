@@ -25,7 +25,7 @@ const page = () => {
       >
         Add new product
       </Link>
-      <table className="basic mt-0.5">
+      <table className="basic mt-1.5">
         <thead>
           <tr>
             <td>Product</td>
