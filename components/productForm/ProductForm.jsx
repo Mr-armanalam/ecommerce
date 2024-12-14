@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Spinner from "../Spinner";
 import { ReactSortable } from "react-sortablejs";
 
@@ -10,17 +10,30 @@ const ProductForm = ({
   description: exisitingDescription,
   price: exisitingPrice,
   images: existingImages,
+  category: signedCategory,
 }) => {
   const router = useRouter();
   const [title, setTitle] = useState(exisitingTitle || "");
   const [description, setDescription] = useState(exisitingDescription || "");
   const [price, setPrice] = useState(exisitingPrice || "");
+  const [category, setCategory] = useState(signedCategory || '');
   const [images, setImages] = useState(existingImages || []);
   const [uploading, setUploading] = useState(false);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+      (async function () {
+        await fetch(`/api/categories`, {method: 'GET'})
+         .then((res) => res.json())
+         .then((product) => {
+            setCategories(product);           
+          });
+      })();
+  },[])
 
   async function saveProduct(e) {
     e.preventDefault();
-    const data = { title, description, price, images };
+    const data = { title, description, price, images, category};
 
     if (_id) {
       await fetch("/api/products/", {
@@ -64,9 +77,10 @@ const ProductForm = ({
     }
   }
 
-  function updateImagesOrder (images) {
-    setImages(images);        
-  }  
+  const updateImagesOrder = useCallback((images) => {
+    setImages(images);    
+    // console.log("arguments");      
+  })
   
 
   return (
@@ -79,6 +93,13 @@ const ProductForm = ({
         value={title}
         onChange={(ev) => setTitle(ev.target.value)}
       />
+      <label>Category</label>
+      <select value={category} onChange={e=> setCategory(e.target.value)}>
+        <option value="">Uncategorized</option>
+        {categories.length > 0 && categories.map((c) =>(
+          <option value={c._id}>{c.name}</option>
+        ))}
+      </select>
       <label htmlFor="photos">Photos</label>
       <div className="mb-2 flex flex-wrap gap-1">
         <ReactSortable 

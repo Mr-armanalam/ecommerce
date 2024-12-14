@@ -37,10 +37,8 @@ export async function POST(req) {
         // public_id: path.parse(newFilename).name,
         public_id: newFilename,
       });
-      // console.log(result.public_id);
-      // Delete the local file
-      await unlink(localFilePath);
 
+      await unlink(localFilePath);
       return NextResponse.json({ message: "Success", url: result.secure_url }, { status: 201 });
     } catch (error) {
       console.error('Error uploading file:', error);
