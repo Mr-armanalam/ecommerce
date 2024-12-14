@@ -6,13 +6,15 @@ export async function POST(req) {
   try {
     await mongooseConnect();
 
-    const { title, description, price, images, category } = await req.json();
+    const { title, description, price, images, category, properties } =
+      await req.json();
     const productDoc = await Product.create({
       title,
       description,
       price,
       images,
       category,
+      properties,
     });
 
     return NextResponse.json(productDoc, { status: "200" });
@@ -41,11 +43,18 @@ export async function GET(request) {
 export async function PUT(req) {
   try {
     await mongooseConnect();
-    const { title, description, price, _id, images, category } =
-      await req.json();
+    const {
+      title,
+      description,
+      price,
+      _id,
+      images,
+      category,
+      properties,
+    } = await req.json();
     await Product.findByIdAndUpdate(
       _id,
-      { title, description, price, images, category },
+      { title, description, price, images, category, properties },
       { new: true }
     );
     return NextResponse.json("Product Details Updated", { status: "200" });
