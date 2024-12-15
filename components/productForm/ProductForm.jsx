@@ -126,7 +126,7 @@ const ProductForm = ({
       <select value={category} onChange={(e) => setCategory(e.target.value)}>
         <option value="">Uncategorized</option>
         {categories.length > 0 &&
-          categories.map((c) => <option value={c._id}>{c.name}</option>)}
+          categories.map((c) => <option key={c._id} value={c._id}>{c.name}</option>)}
       </select>
       {propertiesToFill.length > 0 &&
         propertiesToFill.map((p) => (

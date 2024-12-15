@@ -8,6 +8,12 @@ const Nav = () => {
   const inactiveLink = "flex gap-1 p-1";
   const activeLink = inactiveLink + " bg-white text-blue-900 rounded-l-lg ";
   const pathname = usePathname();
+  const router = useRouter();
+
+  async function lougout() {
+    router.push('/');
+    await signOut();
+  }
 
   return (
     <aside className="text-white p-4 pr-0">
@@ -138,7 +144,7 @@ const Nav = () => {
           </svg>
           Settings
         </Link>
-        <button onClick={() => signOut()} className={inactiveLink}>
+        <button onClick={() => lougout()} className={inactiveLink}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

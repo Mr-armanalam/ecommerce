@@ -2,6 +2,7 @@ import client from "@/lib/db";
 import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import NextAuth, { getServerSession } from "next-auth"
 import GoogleProvider from "next-auth/providers/google";
+import { NextResponse } from "next/server";
 
 
 const adminEmails = ['armanalam78578@gmail.com'];
