@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import path from "path";
 import { writeFile, unlink } from "fs/promises";
 import { v2 as cloudinary } from 'cloudinary';
+import { isAdminRequest } from "../auth/[...nextauth]/route";
 
 export const config = {
   api: {

@@ -155,7 +155,7 @@ const ProductForm = ({
                 <img
                   src={image}
                   alt="Product image"
-                  className=" h-full rounded-md "
+                  className=" h-full rounded-md object-contain"
                 />
               </div>
             ))}
