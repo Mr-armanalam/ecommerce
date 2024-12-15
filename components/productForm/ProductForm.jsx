@@ -129,29 +129,29 @@ const ProductForm = ({
           categories.map((c) => <option key={c._id} value={c._id}>{c.name}</option>)}
       </select>
       {propertiesToFill.length > 0 &&
-        propertiesToFill.map((p) => (
-          <div className="flex gap-1">
-            <div>{p.name}</div>
+        propertiesToFill.map((p, i) => (
+          <div key={i}>
+            <label>{p.name[0].toUpperCase()+p.name.substring(1)}</label>
             <select
               value={productProperties[p.name]}
               onChange={(e) => setProductProp(p.name, e.target.value)}
             >
-              {p.value.map((v) => (
-                <option value={v}>{v}</option>
+              {p.value.map((v, index) => (
+                <option key={index} value={v}>{v}</option>
               ))}
             </select>
           </div>
         ))}
       <label htmlFor="photos">Photos</label>
-      <div className="mb-2 flex flex-wrap gap-1">
+      <div className="mb-2 flex flex-wrap gap-2">
         <ReactSortable
           list={images}
           setList={updateImagesOrder}
-          className="flex flex-wrap gap-1"
+          className="flex flex-wrap gap-2"
         >
           {!!images?.length &&
             images.map((image, index) => (
-              <div key={index} className="w-20 h-24">
+              <div key={index} className="w-24 h-24 bg-gray-50 border rounded-lg border-gray-100 p-4 shadow-md">
                 <img
                   src={image}
                   alt="Product image"
@@ -165,7 +165,9 @@ const ProductForm = ({
             <Spinner />
           </div>
         )}
-        <label className="w-24 cursor-pointer h-24 flex items-center justify-center text-sm gap-1 text-gray-500 rounded-lg bg-gray-200">
+        <label className="w-24 cursor-pointer h-24 flex flex-col items-center 
+        justify-center text-sm gap-1 text-blue-900 font-medium rounded-lg bg-gray-50 shadow-md border border-gray-100 "
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -180,7 +182,7 @@ const ProductForm = ({
               d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5"
             />
           </svg>
-          <div>Upload</div>
+          <div>Add image</div>
           <input type="file" onChange={uploadImages} className="hidden" />
         </label>
       </div>

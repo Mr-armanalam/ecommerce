@@ -20,7 +20,7 @@ const page = () => {
   return (
     <>
       <Link
-        className="bg-blue-900 text-white rounded-md py-1 px-2"
+        className="btn-primary"
         href={"/products/new"}
       >
         Add new product
@@ -28,7 +28,7 @@ const page = () => {
       <table className="basic mt-1.5">
         <thead>
           <tr>
-            <td>Product</td>
+            <td>Product name</td>
             <td></td>
           </tr>
         </thead>
@@ -37,7 +37,7 @@ const page = () => {
             <tr key={product._id}>
               <td>{product.title}</td>
               <td>
-                <Link href={`/products/edit/${product._id}`}>
+                <Link className="bg-blue-900" href={`/products/edit/${product._id}`}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -56,7 +56,7 @@ const page = () => {
                 </Link>
                 <Link
                   href={`/products/delete/${product._id}`}
-                  className="ml-2 text-red-600"
+                  className="ml-2 bg-red-800"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

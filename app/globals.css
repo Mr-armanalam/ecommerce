@@ -6,14 +6,14 @@ img{
   max-width: 100%;
 }
 input, textarea, select{
-  @apply border-2 outline-none border-gray-300 rounded-md px-1 w-full;
+  @apply border outline-none text-sm border-gray-200 py-1 px-2 rounded-md w-full;
   @apply mb-2;
 }
 input:focus, textarea:focus, select:focus{
   @apply border-blue-900;
 }
 h1{
-  @apply text-blue-900 mb-2 text-xl font-bold;
+  @apply text-blue-900 mb-4 text-xl font-bold;
 }
 label{
   @apply text-blue-900 font-semibold;
@@ -22,23 +22,23 @@ label{
   @apply bg-blue-900 text-white px-4 py-1 rounded-md;
 }
 table.basic{
-  @apply w-full;
+  @apply w-full bg-white rounded-sm shadow-md ;
 }
 table.basic thead tr td {
-  @apply bg-blue-100;
+  @apply text-sm border-b font-medium border-gray-200 text-slate-800 px-4 uppercase py-2;
 }
 table.basic tr td{
-  @apply border p-1 border-blue-200 text-slate-800;
+  @apply px-4 py-1;
 }
 table.basic a{
-  @apply bg-blue-900 text-white text-sm py-1 px-2 inline-flex rounded-md;
+  @apply items-center text-white text-sm py-1 px-2 inline-flex rounded-md;
 }
 .btn-red, .btn-default{
   @apply px-4 py-1 rounded-md ;
 }
 .btn-red{
-  @apply bg-red-800 text-white;
+  @apply bg-red-800 px-4 py-1 rounded-md text-white;
 }
 .btn-default{
-  @apply bg-gray-500 text-white;
+  @apply bg-gray-500 text-white px-4 py-2 rounded-md;
 }

@@ -218,7 +218,7 @@ const Categories = () => {
               categories.map((category) => (
                 <tr key={category._id}>
                   <td>{category.name}</td>
-                  <td>{category?.parent?.name}</td>
+                  <td>{(category?.parent?.name || '-')}</td>
                   <td>
                     <button
                       onClick={() => editCategory(category)}
@@ -228,7 +228,7 @@ const Categories = () => {
                     </button>
                     <button
                       onClick={() => deleteCategory(category)}
-                      className="btn-primary"
+                      className="btn-red"
                     >
                       Delete
                     </button>
