@@ -4,7 +4,8 @@ import NextAuth, { getServerSession } from "next-auth"
 import GoogleProvider from "next-auth/providers/google";
 
 
-const adminEmails = ['armanalam78578@gmail.com'];
+const adminEmails = ['armanalam78578@gmail.com'] ;
+const anotherEmails = ['armanalam91174@gmail.com'];
 export const authOptions = {
   providers: [
     GoogleProvider({
@@ -18,7 +19,10 @@ export const authOptions = {
       // console.log({session, token, user});
       if (adminEmails.includes(session?.user?.email)){
         return session;
-      }else {
+      } else if (anotherEmails.includes(session?.user?.email)){ /////////////////// additional ////////////////
+        return session;
+      }     
+      else {
         return false;
       }
     }
