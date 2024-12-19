@@ -33,7 +33,7 @@ const handler = NextAuth(authOptions);
 
 export async function isAdminRequest(){
   const session = await getServerSession(authOptions);
-  if (!adminEmails.includes(session?.user?.email)){
+  if (!(adminEmails.includes(session?.user?.email ) || anotherEmails.includes(session?.user?.email))){
     throw {message: 'not an admin'};
   }
 }
