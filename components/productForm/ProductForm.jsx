@@ -131,7 +131,7 @@ const ProductForm = ({
       {propertiesToFill.length > 0 &&
         propertiesToFill.map((p, i) => (
           <div key={i}>
-            <label>{p.name[0].toUpperCase()+p.name.substring(1)}</label>
+            <label>{p.name[0].toUpperCase()+p.name?.substring(1)}</label>
             <select
               value={productProperties[p.name]}
               onChange={(e) => setProductProp(p.name, e.target.value)}

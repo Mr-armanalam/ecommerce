@@ -2,9 +2,10 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
+
 const page = () => {
   const [product, setProducts] = useState([]);
-
+  
   useEffect(() => {
     const fetchProduct = async () => {
       const res = await fetch("/api/products", {
@@ -33,7 +34,7 @@ const page = () => {
           </tr>
         </thead>
         <tbody>
-          {product.map((product) => (
+          {product?.map((product) => (
             <tr key={product._id}>
               <td>{product.title}</td>
               <td>

@@ -17,7 +17,7 @@ cloudinary.config({
 });
 
 export async function POST(req) {
-  await isAdminRequest();
+  // await isAdminRequest();
 
   if (req.method === "POST") {
     const formData = await req.formData();
