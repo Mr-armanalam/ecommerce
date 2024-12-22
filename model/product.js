@@ -1,7 +1,7 @@
 import { model, models, Schema, Types } from 'mongoose'
 
 const ProductSchema = new Schema({
-  adminUser: { type: Types.ObjectId, ref: 'User'},
+  adminUser: { type: Types.ObjectId, ref: 'AdminUser' },
   title: { type: String, required: true },
   description: { type: String, },
   price: { type: Number, required: true },

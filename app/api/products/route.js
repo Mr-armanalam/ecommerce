@@ -9,6 +9,8 @@ export async function POST(req) {
   try {
     await mongooseConnect();
     const session = await getServerSession(authOptions);
+    console.log(session);
+    
     const adminUser = session.user.id;
 
     const { title, description, price, images, category, properties } =

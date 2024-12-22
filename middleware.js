@@ -3,10 +3,8 @@ import { getToken } from 'next-auth/jwt';
 
 export async function middleware(req) {
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
-
-  // Log token for debugging
-  console.log('Token:', token);
-
+  console.log(token);
+  
   if (!token || !token.id) {
     return NextResponse.redirect(new URL('/auth/signin', req.url));
   }
@@ -14,5 +12,11 @@ export async function middleware(req) {
 }
 
 export const config = {
-  matcher: [ '/((?!auth/signin|_next|static|favicon.ico).*)', ],
+  matcher: [ 
+    '/',
+    '/products/:id*',
+    '/categories/:id*',
+    '/orders/:id*',
+  ],
+  // matcher: [ '/((?!auth/signin|_next|static|favicon.ico).*)', ],
 };

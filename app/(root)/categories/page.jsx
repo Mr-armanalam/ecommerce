@@ -136,8 +136,8 @@ const Categories = () => {
                 </option>
               ))}
             {categories?.length > 0 &&
-              categories.map((category) => (
-                <option key={category._id}>
+              categories.map((category,index) => (
+                <option key={index}>
                   {/* <td>{category.name}</td> */}
                   {category.name}
                 </option>
