@@ -9,7 +9,7 @@ export async function POST(req) {
   try {
     await mongooseConnect();
     const session = await getServerSession(authOptions);
-    console.log(session);
+    // console.log(session);
     
     const adminUser = session.user.id;
 

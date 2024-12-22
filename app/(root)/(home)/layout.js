@@ -10,6 +10,10 @@ const Layout = ({dnav, orderstatus}) => {
       <>
         {dnav}
         {orderstatus}
+        <div className=' py-5 flex gap-4'>
+          <div className='border flex-1'>skjk</div>
+          <div className='border flex-1'>ss</div>
+        </div>
       </>}
     </div>
   )
