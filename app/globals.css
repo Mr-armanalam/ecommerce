@@ -22,7 +22,7 @@ label{
   @apply bg-blue-900 text-white px-4 py-1 rounded-md;
 }
 table.basic{
-  @apply w-full bg-white rounded-sm shadow-md ;
+  @apply w-full bg-white rounded-md shadow-md ;
 }
 table.basic thead tr td, table.basic thead tr th {
   @apply text-sm border-b font-semibold border-gray-200 text-slate-800 px-4 uppercase py-2;
@@ -33,6 +33,9 @@ table.basic tr td{
 table.basic a{
   @apply items-center text-white text-sm py-1 px-2 inline-flex rounded-md;
 }
+/* tbody{
+  @apply inline-block py-2;
+} */
 .btn-red, .btn-default{
   @apply px-4 py-1 rounded-md ;
 }
@@ -41,4 +44,7 @@ table.basic a{
 }
 .btn-default{
   @apply bg-gray-500 text-white px-4 py-2 rounded-md;
+}
+.dashboard-statusbox{
+  @apply shadow-sm box-border shadow-gray-200 p-6 rounded-2xl h-fit bg-gray-50 flex-1;
 }

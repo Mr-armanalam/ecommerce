@@ -1,22 +1,26 @@
-'use client'
-import { useSession } from 'next-auth/react'
-import React from 'react'
+"use client";
+import { useSession } from "next-auth/react";
+import React from "react";
 
-const Layout = ({dnav, orderstatus}) => {
-  const {data: session} = useSession();
+const Layout = ({ dnav, orderstatus, lineCharts, trend, recent }) => {
+  const { data: session } = useSession();
   return (
     <div>
-      {session?.user && 
-      <>
-        {dnav}
-        {orderstatus}
-        <div className=' py-5 flex gap-4'>
-          <div className='border flex-1'>skjk</div>
-          <div className='border flex-1'>ss</div>
-        </div>
-      </>}
+      {session?.user && (
+        <>
+          {dnav}
+          {orderstatus}
+          <div className=" py-5 grid grid-cols-5 gap-4">
+            <div className=" col-span-3 h-fit flex flex-col gap-4">
+              <div className="dashboard-statusbox ">{trend}</div>
+              <div className="dashboard-statusbox">{recent}</div>
+            </div>
+            <div className="dashboard-statusbox h-fit col-span-2">{lineCharts}</div>
+          </div>
+        </>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;
