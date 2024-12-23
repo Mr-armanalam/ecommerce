@@ -18,16 +18,20 @@ export const authOptions = {
     async signIn({ user }) { 
       await mongooseConnect();
       const existingUser = await AdminUser.findOne({ email: user.email }); 
+      console.log(existingUser);
+      
       if (!existingUser) { 
         const newuser = await AdminUser.create({ 
           name: user.name, 
           email: user.email,
           image: user.image,
           role: 'admin',  
+          totalRevenue: 0,
         }); 
         user.id = newuser._id.toString();
       } else {
         user.id = existingUser._id.toString();
+        user.totalRevenue = existingUser.totalRevenue.toString();
       }
       return true; 
     },
@@ -37,6 +41,7 @@ export const authOptions = {
         token.email = user.email;
         token.role = user.role;
         token.name = user?.name;
+        token.totalRevenue = user?.totalRevenue;
       }
       return token;
     },
@@ -46,6 +51,7 @@ export const authOptions = {
         session.user.email = token.email;
         session.user.role = token.role;
         session.user.name = token?.name;
+        session.user.totalRevenue= token?.totalRevenue;
       }
       return session;
     },

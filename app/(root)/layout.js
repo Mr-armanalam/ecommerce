@@ -1,6 +1,7 @@
 "use client";
 import Logo from "@/components/Navbar/Logo";
 import Nav from "@/components/Navbar/Nav";
+import { DataProvider } from "@/components/provider/OrderProvider";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 
@@ -33,7 +34,7 @@ export default function Pagelayout({ children }) {
       <div className="flex">
         <Nav show={showNav} setshow={setShowNav} />
         <div className="bg-white flex-grow mt-2 mb-2 mr-1 rounded-lg p-4">
-          {children}
+          <DataProvider>{children}</DataProvider>
         </div>
       </div>
     </div>
