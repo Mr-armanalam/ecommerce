@@ -1,3 +1,4 @@
+'use client'
 import React from 'react';
 import { FaTruck } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";

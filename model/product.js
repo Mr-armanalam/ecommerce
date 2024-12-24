@@ -8,6 +8,8 @@ const ProductSchema = new Schema({
   images: [{ type: String }],
   category: { type: Types.ObjectId, ref: 'Category' },
   properties: { type: Object},
+  sells: {type: Number, default:0},
+  totalItem: { type: Number, default: 0},
 },{timestamps: true});
 
 export const Product = models.Product || model('Product', ProductSchema);

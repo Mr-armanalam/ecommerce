@@ -16,8 +16,16 @@ export function DataProvider({ children }) {
       })();
     }, []);
 
+    const totalAmounts = data?.map((order) => {
+      let totalAmount = 0;
+      order.line_items.forEach((item) => {
+        totalAmount += (item.price_data.unit_amount * item.quantity)/100;
+      });
+      return totalAmount;
+    });
+
   return (
-    <DataContext.Provider value={{data, setData}}>
+    <DataContext.Provider value={{data, setData, totalAmounts}}>
       {children}
     </DataContext.Provider>
   );

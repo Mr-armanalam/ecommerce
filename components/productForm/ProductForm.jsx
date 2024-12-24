@@ -12,6 +12,7 @@ const ProductForm = ({
   images: existingImages,
   category: signedCategory,
   properties: assignedProperties,
+  totalItem: assignedTotalItem,
 }) => {
   const router = useRouter();
   const [title, setTitle] = useState(exisitingTitle || "");
@@ -20,6 +21,7 @@ const ProductForm = ({
   const [category, setCategory] = useState(signedCategory || "");
   const [productProperties, setProductProperties] = useState(assignedProperties || {});
   const [images, setImages] = useState(existingImages || []);
+  const [totalItem, setTotalItem] = useState(assignedTotalItem || 0);
   const [uploading, setUploading] = useState(false);
   const [categories, setCategories] = useState([]);
 
@@ -41,6 +43,7 @@ const ProductForm = ({
       price,
       images,
       category,
+      totalItem,
       properties: productProperties,
     };
 
@@ -201,6 +204,14 @@ const ProductForm = ({
         placeholder="price"
         value={price}
         onChange={(e) => setPrice(e.target.value)}
+      />
+      <label htmlFor="products">Total Products</label>
+      <input
+        type="number"
+        id="products"
+        placeholder="No. of products"
+        value={totalItem}
+        onChange={(e) => setTotalItem(e.target.value)}
       />
       <button type="submit" className="btn-primary">
         Save

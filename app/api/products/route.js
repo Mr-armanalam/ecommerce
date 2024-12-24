@@ -13,7 +13,7 @@ export async function POST(req) {
     
     const adminUser = session.user.id;
 
-    const { title, description, price, images, category, properties } =
+    const { title, description, price, images, category, properties, totalItem } =
       await req.json();
     const productDoc = await Product.create({
       adminUser,
@@ -23,6 +23,7 @@ export async function POST(req) {
       images,
       category,
       properties,
+      totalItem
     });
 
     return NextResponse.json(productDoc, { status: "200" });
@@ -63,11 +64,12 @@ export async function PUT(req) {
       images,
       category,
       properties,
+      totalItem,
       _id,
     } = await req.json();
     await Product.findByIdAndUpdate(
       _id,
-      { title, description, price, images, category, properties, adminUser, },
+      { title, description, price, images, category, properties, adminUser, totalItem },
       { new: true }
     );
     return NextResponse.json("Product Details Updated", { status: "200" });

@@ -1,10 +1,11 @@
 "use client";
 
 import { useData } from "@/components/provider/OrderProvider";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 const Recent = () => {
-  const { data:Orders} = useData();
+  const { data: Orders, totalAmounts } = useData();
+
   return (
     <div>
       <h1>Recent Payments</h1>
@@ -26,10 +27,12 @@ const Recent = () => {
                     <p key={k}>{item.price_data?.product_data?.name}</p>
                   ))}
                 </td>
-                <td className="text-green-700">
-                  {order?.line_items?.map((item, k) => (
+                <td className="text-green-700"> 
+                  {/* for showing individual added amount */}
+                  {/* {order?.line_items?.map((item, k) => (
                     <p key={k}>$ {item.price_data?.unit_amount}</p>
-                  ))}
+                  ))} */}
+                  ${totalAmounts[index]}
                 </td>
               </tr>
             ))}

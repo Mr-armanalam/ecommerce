@@ -7,16 +7,17 @@ import { FaCaretUp } from "react-icons/fa";
 
 const Dnav = () => {
   const { data: session } = useSession();
-  const { data: Orders } = useData();  
+  const { totalAmounts } = useData();  
 
-  const latestAmount = Orders[0]?.line_items[0]?.price_data?.unit_amount ;
+  // const latestAmount = (Orders[0]?.line_items[0]?.price_data?.unit_amount/100) ;
+  const latestAmount = totalAmounts[0]
   
   return (
     <div className="flex text-blue-900 justify-between">
       <div>
         <p className="font-semibold text-sm">Total Revenue</p>
         <div className="flex gap-1">
-          <span className="text-2xl font-bold">$ {session?.user?.totalRevenue}.00</span>
+          <span className="text-2xl font-bold">$ 0{session?.user?.totalRevenue}.00</span>
           <div className="inline-flex mt-auto mb-1 text-green-700">
             <FaCaretUp />
             <span className="text-xs font-semibold">${latestAmount}</span>
