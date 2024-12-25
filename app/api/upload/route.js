@@ -11,7 +11,7 @@ export const config = {
 };
 
 cloudinary.config({
-  NEXT_PUBLIC_CLOUD_NAME: process.env.NEXT_PUBLIC_CLOUD_NAME,
+  cloud_name: process.env.NEXT_PUBLIC_CLOUD_NAME,
   api_key: process.env.NEXT_PUBLIC_CLOUDINARY_KEY,
   api_secret: process.env.NEXT_PUBLIC_CLOUDINARY_SECRET,
 });
