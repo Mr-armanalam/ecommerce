@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import path from "path";
 import { writeFile, unlink } from "fs/promises";
 import { v2 as cloudinary } from "cloudinary";
-import { isAdminRequest } from "../auth/[...nextauth]/route";
+import os from 'os';
 
 export const config = {
   api: {
@@ -17,7 +17,6 @@ cloudinary.config({
 });
 
 export async function POST(req) {
-  // await isAdminRequest();
 
   if (req.method === "POST") {
     const formData = await req.formData();
@@ -32,12 +31,14 @@ export async function POST(req) {
     const buffer = Buffer.from(await file.arrayBuffer());
     // const originalFilename = file.name.replaceAll(" ", "_");
     // const newFilename = `${path.parse(originalFilename).name}_${Date.now()}${path.extname(originalFilename)}`;
+    const tempDirectory = os.tmpdir();
     const newFilename = `product_${Date.now()}`;
-    const localFilePath = path.join(
-      process.cwd(),
-      "public/assets/",
-      newFilename
-    );
+    // const localFilePath = path.join(
+    //   process.cwd(),
+    //   "public/assets/",
+    //   newFilename
+    // );
+    const localFilePath = path.join(tempDirectory, newFilename);
 
     try {
       await writeFile(localFilePath, buffer);
