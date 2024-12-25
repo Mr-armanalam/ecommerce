@@ -17,7 +17,7 @@ const Dnav = () => {
       <div>
         <p className="font-semibold text-sm">Total Revenue</p>
         <div className="flex gap-1">
-          <span className="text-2xl font-bold">$ 0{session?.user?.totalRevenue}.00</span>
+          <span className="text-2xl font-bold">$ {session?.user?.totalRevenue}.00</span>
           <div className="inline-flex mt-auto mb-1 text-green-700">
             <FaCaretUp />
             <span className="text-xs font-semibold">${latestAmount}</span>

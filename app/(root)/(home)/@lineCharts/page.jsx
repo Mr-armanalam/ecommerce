@@ -10,7 +10,8 @@ import {
 import { MdOutlineHorizontalRule } from "react-icons/md";
 
 // Example data for daily and weekly orders
-const dailyOrders = [50, 70, 100, 80, 60, 90, 110];
+const dailyOrders = [10, 10, 20, 50, 40, 30, 80];
+const monthlyOrders = [50, 70, 100, 80, 60, 90, 110];
 const xLabels = ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7"];
 
 export default function LineChart() {
@@ -72,7 +73,7 @@ export default function LineChart() {
           <ChartContainer
             width={400}
             height={300}
-            series={[{ type: "line", data: dailyOrders }]}
+            series={[{ type: "line", data: monthlyOrders }]}
             xAxis={[{ scaleType: "point", data: xLabels }]}
             sx={{
               [`& .${lineElementClasses.root}`]: {

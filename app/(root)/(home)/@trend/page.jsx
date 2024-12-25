@@ -1,6 +1,20 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 
 const Trend = () => {
+  const [orders, setOrders] = useState([]);
+  useEffect(() => {
+    async function getProducts() {
+      await fetch("api/products", { method: "GET" })
+        .then((response) => response.json())
+        .then((data) => {
+          const sorted = [...data].sort((a, b) => b.sells - a.sells);
+          setOrders(sorted);
+        });
+    }
+    getProducts();
+  }, []);
+
   return (
     <div>
       <h1>Trending Items</h1>
@@ -14,13 +28,14 @@ const Trend = () => {
             </tr>
           </thead>
           <tbody>
-            {[...Array(3)].map((_, index) => (
-              <tr key={index} className="text-sm text-gray-700 ">
-                <td>Sumsung glaxy S24</td>
-                <td>80</td>
-                <td>14</td>
-              </tr>
-            ))}
+            {orders.map((order, index) =>
+              index <= 2 && (
+                <tr key={index} className="text-sm text-gray-700 ">
+                  <td>{order.title}</td>
+                  <td>{order.sells}</td>
+                  <td>{order.totalItem - order.sells}</td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
