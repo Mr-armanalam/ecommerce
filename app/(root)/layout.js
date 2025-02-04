@@ -5,10 +5,15 @@ import { DataProvider } from "@/components/provider/OrderProvider";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 
+
 export default function Pagelayout({ children }) {
   const [showNav, setShowNav] = useState(false);
+  const { data: session, status } = useSession();
+  console.log(session, status);
+  
 
   return (
+    session ?
     <div className="bg-blue-900 min-h-screen">
       <div className="md:hidden text-white flex items-center p-4">
         <button onClick={() => setShowNav(true)} className="">
@@ -38,5 +43,6 @@ export default function Pagelayout({ children }) {
         </div>
       </div>
     </div>
+    : children
   );
 }
