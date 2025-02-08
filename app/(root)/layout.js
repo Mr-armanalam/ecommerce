@@ -7,8 +7,8 @@ import { useState } from "react";
 
 export default function Pagelayout({ children }) {
   const [showNav, setShowNav] = useState(false);
-  const { data: session, status } = useSession();
-  console.log(session, status);
+  const { data: session } = useSession();
+  // console.log(session, status);
 
   return session ? (
     <div className="bg-blue-900 min-h-screen">
