@@ -1,34 +1,10 @@
-// 'use client'
-// import { signIn, useSession } from "next-auth/react";
-// import { useRouter } from "next/navigation";
-// import React from "react";
-
-//  export default function CustomAuth () {
-//   const router = useRouter();
-//   const { data: session } = useSession();
-
-//     if (session?.user) {
-//       return router.push('/');
-//     }
-//       return (
-//       <div className=" w-full h-screen rounded-md flex items-center">
-//         <div className="bg-blue-900 text-center h-20 flex items-center justify-center w-full">
-//           <button
-//             onClick={() => signIn("google",{callbackUrl: '/'})}
-//             className="bg-white p-2 px-4 rounded-lg"
-//           >
-//             Login with Google
-//           </button>
-//         </div>
-//       </div>
-//     );
-//   }
-
 "use client";
 import React, { useState } from "react";
 import { Spotlight } from "@/components/ui/spotlight-new";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import logoImage from '@/components/icon/images/Group 2.svg'
 
 const CustomAuth = () => {
   const router = useRouter();
@@ -47,6 +23,10 @@ const CustomAuth = () => {
   return (
     <div className="h-screen w-full flex md:items-center md:justify-center bg-black/[0.96] antialiased bg-grid-white/[0.02] relative overflow-hidden">
       <Spotlight />
+      <div className="top-6 border rounded-full pt-1 pl-0.5 pr-4 justify-center box-border left-4 flex items-center gap-x-2 absolute text-white">
+        <Image src={logoImage} className="animate-bounce" height={40} width={40} alt="logo" />
+        <span className="font-bold pb-1 text-xl">Welcome</span>
+      </div>
       <div className=" p-4 max-w-7xl flex flex-col mx-auto relative z-10  w-full pt-20 md:pt-0">
         <h1 className="text-4xl md:text-7xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50">
           QuirkCart <br />{" "}
@@ -63,6 +43,9 @@ const CustomAuth = () => {
         >
           Login With Google
         </button>
+      </div>
+      <div className="flex absolute right-4 bottom-2 items-center justify-center px-4 text-sm text-neutral-300">
+        &copy; 2023 QuirkCart. All rights reserved.
       </div>
     </div>
   );
