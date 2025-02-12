@@ -23,7 +23,7 @@ const CustomAuth = () => {
   return (
     <div className="h-screen w-full flex md:items-center md:justify-center bg-black/[0.96] antialiased bg-grid-white/[0.02] relative overflow-hidden">
       <Spotlight />
-      <div className="top-6 border rounded-full pt-1 pl-0.5 pr-4 justify-center box-border left-4 flex items-center gap-x-2 absolute text-white">
+      <div className="top-6 border rounded-full pt-1 pl-0.5 pr-4 justify-center box-border left-4 flex items-center gap-x-1.5 absolute text-white">
         <Image src={logoImage} className="animate-bounce" height={40} width={40} alt="logo" />
         <span className="font-bold pb-1 text-xl">Welcome</span>
       </div>
@@ -45,7 +45,7 @@ const CustomAuth = () => {
         </button>
       </div>
       <div className="flex absolute right-4 bottom-2 items-center justify-center px-4 text-sm text-neutral-300">
-        &copy; 2023 QuirkCart. All rights reserved.
+        &copy; {'2025'} QuirkCart. All rights reserved.
       </div>
     </div>
   );
