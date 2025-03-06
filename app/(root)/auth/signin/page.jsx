@@ -41,7 +41,7 @@ const CustomAuth = () => {
           onClick={handleSignIn}
           disabled= {isSignedClick}
         >
-          Login With Google
+          Login with Google
         </button>
       </div>
       <div className="flex absolute right-4 bottom-2 items-center justify-center px-4 text-sm text-neutral-300">
