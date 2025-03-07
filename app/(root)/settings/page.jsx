@@ -17,12 +17,6 @@ const Settings = () => {
     if (Object.keys(childCategory).length !== 0) {
       allProductFetching();
     }
-
-    // setTrendingProducts((prevTrendingProducts) => [
-    //   ...prevTrendingProducts,
-    //   "data",
-    // ])
-
   }, [childCategory, setChildCategory]);
 
   const allProductFetching = async () => {
@@ -30,33 +24,6 @@ const Settings = () => {
     setAllProduct(JSON.parse(products));
   };
 
-  // async function saveCategory(e) {
-  //   e.preventDefault();
-  //   const data = {
-  //     parentCategory,
-  //     properties: properties.map((p) => ({
-  //       name: p.name,
-  //       value: p.value.split(","),
-  //     })),
-  //   };
-  //   if (editedcategory) {
-  //     await fetch("/api/categories/", {
-  //       method: "PUT",
-  //       body: JSON.stringify({ ...data, _id: editedcategory._id }),
-  //     });
-  //     setEditedcategory(null);
-  //   } else {
-  //     await fetch("/api/categories", {
-  //       headers: { "Content-Type": "application/json" },
-  //       method: "POST",
-  //       body: JSON.stringify(data),
-  //     });
-  //   }
-  //   setName("");
-  //   setParentCategory("");
-  //   setProperties([]);
-  //   fetchCategories();
-  // }
 
   async function fetchCategories() {
     await fetch("/api/trendingProduct", { method: "GET" })
@@ -67,10 +34,10 @@ const Settings = () => {
       });
   }
 
-  function deleteCategory(category) {
+  function deleteCategory(product, category) {
     Swal.fire({
       title: "Are you sure?",
-      text: `Do you want to delete ${category.name}`,
+      text: `Do you want to delete ${product.title}`,
       // icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#d55",
@@ -79,12 +46,15 @@ const Settings = () => {
       reverseButtons: true,
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await fetch(`/api/categories?_id=${category._id}`, {
-          method: "DELETE",
-        });
+        await fetch(
+          `/api/trendingProduct?_id=${product._id}&_category=${category}`,
+          {
+            method: "DELETE",
+          }
+        ).then(async (result) => console.log(await result.json()));
         Swal.fire({
           title: "Deleted!",
-          text: `${category.name} has been deleted.`,
+          text: `${product.title} has been deleted.`,
           icon: "success",
         });
         fetchCategories();
@@ -103,15 +73,17 @@ const Settings = () => {
       }),
     })
       .then(async (result) => result.json())
-      .then((data) =>
-        setTrendingProducts((prevTrendingProducts) => ({
-          ...prevTrendingProducts,
-          data
-      }))
-      );
+      .then((data) => {
+        Swal.fire({
+          title: 'Product is added to the Tranding product list',
+          showCancelButton: false,
+        });
+        setParentCategory(0);
+        setChildCategory({});
+        return setTrendingProducts(data)
+      });
   };
 
-    
   return (
     <>
       <h1>Settings</h1>
@@ -135,7 +107,6 @@ const Settings = () => {
               ))}
           </select>
 
-          {/* <select value={childCategory} onChange={(e) => setChildCategory(e.target.value)}> */}
           <select
             value={childCategory?._id || ""}
             onChange={(e) => {
@@ -196,7 +167,12 @@ const Settings = () => {
                 <td>{trendingProducts?.CategoryName[index] || "-"}</td>
                 <td>
                   <button
-                    onClick={() => deleteCategory(product._id)}
+                    onClick={() =>
+                      deleteCategory(
+                        product,
+                        trendingProducts?.CategoryName[index]
+                      )
+                    }
                     className="btn-red"
                   >
                     Delete

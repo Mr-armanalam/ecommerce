@@ -1,7 +1,5 @@
-import Categories from "@/app/(root)/categories/page";
 import { mongooseConnect } from "@/lib/mongoose";
 import { Category } from "@/model/category";
-import { Product } from "@/model/product";
 import { Tranding } from "@/model/trandingProduct";
 import { NextResponse } from "next/server";
 
@@ -34,8 +32,6 @@ export async function POST(req) {
   try {
     mongooseConnect();
     const { productId, category_name } = await req.json();
-    console.log(category_name);
-    
     let trandingDoc = await Tranding.findOne();
 
     if (trandingDoc) {
@@ -49,8 +45,34 @@ export async function POST(req) {
       });
     }
 
-    return NextResponse.json(trandingDoc);
+    const populatedDoc = await Tranding.findById(trandingDoc._id).populate(
+      "TrndProduct"
+    );
+
+    return NextResponse.json(populatedDoc);
   } catch (error) {
     return NextResponse.json({ message: error.message }, { status: 500 });
+  }
+}
+
+export async function DELETE(req) {
+  try {
+    await mongooseConnect();
+    const searchParams = req.nextUrl.searchParams;
+    const productId = searchParams.get("_id");
+    const category = searchParams.get("_category");
+
+    if (!productId)
+      return NextResponse.json("Something went wrong", { status: 400 });
+
+    await Tranding.updateOne(
+      { TrndProduct: productId },
+      { $pull: { TrndProduct: productId, CategoryName: category } }
+    );
+
+    return NextResponse.json("ok", { status: 200 });
+  } catch (error) {
+    console.error(error.message);
+    return Error("Error while deleting product: ", { status: 400 });
   }
 }
